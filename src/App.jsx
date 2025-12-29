@@ -86,7 +86,7 @@ function App() {
                 alt="logo"
                 className="w-12 h-12 rounded-full border-2 border-white"
               />
-              <span className="text-white font-semibold text-lg">
+              <span className="text-white font-semibold text-lg max-md:hidden">
                 Assignment App
               </span>
             </li>
