@@ -200,10 +200,10 @@ function Display() {
                 <td className="p-2">
                   <button
                     onClick={() => handleDelete(item.serialNumber)}
-                    className="text-red-600 hover:text-red-800 text-lg"
+                    className="text-red-600 hover:text-red-800 text-lg hover:bg-blue-500"
                     title="Delete"
                   >
-                    🗑️
+                    ❌
                   </button>
                 </td>
               )}
