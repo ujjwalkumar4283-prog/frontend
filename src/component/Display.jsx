@@ -46,17 +46,7 @@ function Display() {
 
   return (
     <>
-    <style>{`
-        .custom-checkbox:disabled {
-          opacity: 1;
-          cursor: not-allowed;
-          filter: none;
-        }
-        .custom-checkbox:disabled:checked {
-          accent-color: green;
-          background-color: green;
-        }
-      `}</style>
+   
     
     <div className="overflow-x-auto mt-6 p-4">
       <h2 className="text-xl font-bold mb-4">{subject?.toUpperCase()}</h2>
