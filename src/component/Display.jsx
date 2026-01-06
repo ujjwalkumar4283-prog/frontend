@@ -188,7 +188,7 @@ function Display() {
       <table className="min-w-full bg-white rounded-xl shadow-md">
         <thead className="bg-blue-600 text-white">
           <tr>
-            <th className="p-2">Delete</th>
+            {user.email === "admin@admin.com" && <th className="p-2">Delete</th>}
             <th className="p-2">Serial</th>
             <th className="p-2">Name</th>
             {[1, 2, 3, 4, 5].map((n) => (
@@ -213,7 +213,7 @@ function Display() {
                     className="text-red-600 hover:text-red-800 text-lg"
                     title="Delete"
                   >
-                    🗑️
+                    ❌
                   </button>
                 )}
               </td>
