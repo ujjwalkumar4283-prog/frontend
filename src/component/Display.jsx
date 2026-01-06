@@ -118,10 +118,10 @@ function Display() {
   const allAssignments = useSelector((state) => state.assignment.assignment);
   const user = useSelector((state) => state.user.user);
 
+  const isAdmin = user?.email === "admin@admin.com"; // ✅ Admin check
+
   // Filter only current subject
-  const assignments = allAssignments.filter(
-    (a) => a.subject === subject
-  );
+  const assignments = allAssignments.filter((a) => a.subject === subject);
 
   // Fetch all assignments from backend
   const fetchAllAssignments = async () => {
@@ -139,12 +139,10 @@ function Display() {
     }
   };
 
-  // Checkbox handler (assignment complete/incomplete)
+  // Checkbox handler
   const handleCheckboxChange = async (serialNumber, field, value) => {
-    // 1️⃣ Optimistic UI update
     dispatch(updateAssignment({ serialNumber, field, value }));
 
-    // 2️⃣ Backend update
     try {
       await fetch(`${import.meta.env.VITE_BACKEND}/assignment/update`, {
         method: "POST",
@@ -156,7 +154,6 @@ function Display() {
       console.error("Update failed", err);
     }
 
-    // 3️⃣ Sync again
     fetchAllAssignments();
   };
 
@@ -172,7 +169,6 @@ function Display() {
         credentials: "include",
       });
 
-      // Sync redux after delete
       fetchAllAssignments();
     } catch (err) {
       console.error("Delete failed", err);
@@ -181,14 +177,12 @@ function Display() {
 
   return (
     <div className="overflow-x-auto mt-6 p-4">
-      <h2 className="text-xl font-bold mb-4">
-        {subject?.toUpperCase()}
-      </h2>
+      <h2 className="text-xl font-bold mb-4">{subject?.toUpperCase()}</h2>
 
       <table className="min-w-full bg-white rounded-xl shadow-md">
         <thead className="bg-blue-600 text-white">
           <tr>
-            {user.email === "admin@admin.com"? <th className="p-2">Delete</th>:undefined}
+            {isAdmin && <th className="p-2">Delete</th>} {/* Delete column only for admin */}
             <th className="p-2">Serial</th>
             <th className="p-2">Name</th>
             {[1, 2, 3, 4, 5].map((n) => (
@@ -201,22 +195,18 @@ function Display() {
 
         <tbody>
           {assignments.map((item) => (
-            <tr
-              key={item._id}
-              className="text-center border-b hover:bg-gray-50"
-            >
-              {/* DELETE COLUMN */}
-              <td className="p-2">
-                {user.email === "admin@admin.com" && (
+            <tr key={item._id} className="text-center border-b hover:bg-gray-50">
+              {isAdmin && (
+                <td className="p-2">
                   <button
                     onClick={() => handleDelete(item.serialNumber)}
                     className="text-red-600 hover:text-red-800 text-lg"
                     title="Delete"
                   >
-                    ❌
+                    🗑️
                   </button>
-                )}
-              </td>
+                </td>
+              )}
 
               <td className="p-2">{item.serialNumber}</td>
               <td className="p-2">{item.name}</td>
@@ -228,7 +218,7 @@ function Display() {
                     <input
                       type="checkbox"
                       checked={!!item[field]}
-                      disabled={user.email !== "admin@admin.com"}
+                      disabled={!isAdmin}
                       onChange={(e) =>
                         handleCheckboxChange(
                           item.serialNumber,
