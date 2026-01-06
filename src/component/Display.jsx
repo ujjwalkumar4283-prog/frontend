@@ -45,6 +45,19 @@ function Display() {
   };
 
   return (
+    <>
+    <style>{`
+        .custom-checkbox:disabled {
+          opacity: 1;
+          cursor: not-allowed;
+          filter: none;
+        }
+        .custom-checkbox:disabled:checked {
+          accent-color: green;
+          background-color: green;
+        }
+      `}</style>
+    
     <div className="overflow-x-auto mt-6 p-4">
       <h2 className="text-xl font-bold mb-4">{subject?.toUpperCase()}</h2>
 
@@ -68,7 +81,7 @@ function Display() {
                 const field = `assignment${n}`;
                 return (
                   <td key={field}>
-                    {/* <input
+                    <input
                       type="checkbox"
                       checked={!!item[field]}
                       disabled={user.email !== "admin@admin.com"}
@@ -79,24 +92,7 @@ function Display() {
                           e.target.checked
                         )
                       }
-                    /> */}
-                    <input
-  type="checkbox"
-  checked={!!item[field]}
-  disabled={user.email !== "admin@admin.com"}
-  onChange={(e) =>
-    handleCheckboxChange(
-      item.serialNumber,
-      field,
-      e.target.checked
-    )
-  }
-  style={{
-    accentColor: user.email !== "admin@admin.com" ? "green" : undefined,
-    opacity: 1,
-    cursor: user.email !== "admin@admin.com" ? "not-allowed" : "pointer"
-  }}
-/>
+                    />
                   </td>
                 );
               })}
@@ -105,6 +101,7 @@ function Display() {
         </tbody>
       </table>
     </div>
+    </>
   );
 }
 
