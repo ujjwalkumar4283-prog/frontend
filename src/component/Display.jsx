@@ -68,15 +68,10 @@ function Display() {
                 const field = `assignment${n}`;
                 return (
                   <td key={field}>
-                    <input
+                    {/* <input
                       type="checkbox"
                       checked={!!item[field]}
                       disabled={user.email !== "admin@admin.com"}
-                      style={{
-    // Jab disabled false hoga, tabhi green dikhega
-    accentColor: user.email === "admin@admin.com" ? "green" : "initial",
-    cursor: user.email === "admin@admin.com" ? "pointer" : "not-allowed"
-  }}
                       onChange={(e) =>
                         handleCheckboxChange(
                           item.serialNumber,
@@ -84,7 +79,24 @@ function Display() {
                           e.target.checked
                         )
                       }
-                    />
+                    /> */}
+                    <input
+  type="checkbox"
+  checked={!!item[field]}
+  disabled={user.email !== "admin@admin.com"}
+  onChange={(e) =>
+    handleCheckboxChange(
+      item.serialNumber,
+      field,
+      e.target.checked
+    )
+  }
+  style={{
+    accentColor: user.email !== "admin@admin.com" ? "green" : undefined,
+    opacity: 1,
+    cursor: user.email !== "admin@admin.com" ? "not-allowed" : "pointer"
+  }}
+/>
                   </td>
                 );
               })}
