@@ -79,7 +79,7 @@ function Form() {
 
   return (
     <div className="bg-yellow-200 p-6 rounded-xl shadow-md max-w-2xl mx-auto mt-6">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">Add New Assignment</h2>
+      <h2 className="text-2xl font-bold mb-4 text-gray-800">Add New Member</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="flex gap-4 max-md:flex-col">
           <div className="flex flex-col flex-1">
@@ -112,7 +112,7 @@ function Form() {
           }`}
           disabled={loading}
         >
-          {loading ? "Submitting..." : "Add Assignment"}
+          {loading ? "Submitting..." : "Add Member"}
         </button>
       </form>
     </div>
