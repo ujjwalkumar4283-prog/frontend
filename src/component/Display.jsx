@@ -72,12 +72,11 @@ function Display() {
                       type="checkbox"
                       checked={!!item[field]}
                       disabled={user.email !== "admin@admin.com"}
-                       className="
-    accent-blue-600
-    disabled:opacity-100
-    disabled:cursor-not-allowed
-    checked:disabled:accent-green-600
-  "
+                      style={{
+    // Jab disabled false hoga, tabhi green dikhega
+    accentColor: user.email === "admin@admin.com" ? "green" : "initial",
+    cursor: user.email === "admin@admin.com" ? "pointer" : "not-allowed"
+  }}
                       onChange={(e) =>
                         handleCheckboxChange(
                           item.serialNumber,
