@@ -72,7 +72,12 @@ function Display() {
                       type="checkbox"
                       checked={!!item[field]}
                       disabled={user.email !== "admin@admin.com"}
-                      className="accent-green-600 disabled:accent-green-600"
+                       className="
+    accent-blue-600
+    disabled:opacity-100
+    disabled:cursor-not-allowed
+    checked:disabled:accent-green-600
+  "
                       onChange={(e) =>
                         handleCheckboxChange(
                           item.serialNumber,
