@@ -115,10 +115,22 @@ function App() {
       {/* MAIN */}
       <main className="bg-gray-100 min-h-screen p-4">
         {!isLoggedIn ? (
-          <div className="text-center mt-10">
-            <h1 className="text-3xl font-bold text-gray-700 mb-3">Welcome 👋</h1>
-            <p className="text-gray-600">Please Sign In or Sign Up to continue</p>
-            <img src={ujjawal} alt="welcome" className="mx-auto w-64 rounded-full mt-6"/>
+          <div>
+            <div className="text-center mt-5">
+              <h1 className="text-3xl font-bold text-gray-700 mb-2">
+                Welcome 👋
+              </h1>
+              <p className="text-gray-600">Please Sign In or Sign Up to continue</p>
+            </div>
+            <div className="flex justify-center mt-4 rounded-full">
+              <img src={ujjawal} alt="Welcome" className="w-64 h-auto rounded-full" />
+            </div>
+            <div className="text-center mt-5">
+              <h1 className="text-3xl font-bold text-gray-700 mb-2">
+                Designed and Developed by
+              </h1>
+              <p className="text-blue-600 font-bold italic"> <u>Ujjawal Agrawal</u> <span className="font-bold text-red-600">(E1J1)</span></p>
+            </div>
           </div>
         ) : (
           <>
